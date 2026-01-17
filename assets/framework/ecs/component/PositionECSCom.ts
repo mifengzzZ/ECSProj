@@ -5,7 +5,7 @@ import { EntityECS } from "db://assets/scripts/GameEntryWorldECS";
 
 
 export class PositionECSCom {
-    
+
     x: Float32Array;
     y: Float32Array;
 
@@ -18,10 +18,10 @@ export class PositionECSCom {
         // 普通 number[]
         // const arr: number[] = [1.1, 2.2, 3.3];
         // 内存本质（简化）：
-            // arr
-            // ├─ ptr → Number对象(1.1)
-            // ├─ ptr → Number对象(2.2)
-            // └─ ptr → Number对象(3.3)
+        // arr
+        // ├─ ptr → Number对象(1.1)
+        // ├─ ptr → Number对象(2.2)
+        // └─ ptr → Number对象(3.3)
         // ❌ 每个元素是对象
         // ❌ 分散在堆上
         // ❌ 有指针
@@ -33,9 +33,9 @@ export class PositionECSCom {
         // arr[1] = 2.2;
         // arr[2] = 3.3;
         // 内存本质：
-            // | 1.1 | 2.2 | 3.3 |
-            // |_____|_____|_____|
-            // 连续内存（每个 4 字节）
+        // | 1.1 | 2.2 | 3.3 |
+        // |_____|_____|_____|
+        // 连续内存（每个 4 字节）
         // ✅ 连续
         // ✅ 无对象
         // ✅ 无指针
@@ -50,7 +50,7 @@ export class PositionECSCom {
         this.y = new Float32Array(capacity);
 
         this.prevX = new Float32Array(capacity);
-        this.prevX = new Float32Array(capacity);
+        this.prevY = new Float32Array(capacity);
     }
 
     /**

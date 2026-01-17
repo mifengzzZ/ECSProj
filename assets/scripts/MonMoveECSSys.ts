@@ -29,7 +29,7 @@ export class MonMoveECSSys extends SystemECS {
             this.world.dirty.pos[e] = 1;
         }
     }
-    
+
 }
 
 

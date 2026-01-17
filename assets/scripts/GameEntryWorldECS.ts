@@ -12,7 +12,7 @@ const { ccclass, property } = _decorator;
 export type EntityECS = number;
 
 export class WorldECS {
-    
+
     private nextEntity: EntityECS = 0;
     private alive = new Set<EntityECS>();
 
@@ -30,7 +30,7 @@ export class WorldECS {
         this.vel = new VelocityECSCom(capacity);
         this.rot = new RotationECSCom(capacity);
         this.scale = new ScaleECSCom(capacity);
-    
+
         // 脏数据标记
         this.dirty = new TransformDirtyECSCom(capacity);
     }

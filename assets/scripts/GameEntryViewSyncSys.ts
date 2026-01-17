@@ -3,10 +3,10 @@
 // 把 ECS 数据 → 写到 Node
 
 // 📌 特点：
-    // 不改 ECS
-    // 不写逻辑
-    // 不判断业务状态
-    // 只做同步
+// 不改 ECS
+// 不写逻辑
+// 不判断业务状态
+// 只做同步
 
 
 import { StoreECS } from "../framework/ecs/StoreECS";
@@ -19,7 +19,7 @@ import { MonECSView } from "./MonECSView";
 const alpha: number = 0.5;
 
 export class GameEntryViewSyncSys extends SystemECS {
-    
+
     views = new StoreECS<MonECSView>();
 
     constructor(
@@ -34,7 +34,7 @@ export class GameEntryViewSyncSys extends SystemECS {
 
     // 📌 逻辑帧 ≠ 渲染帧
     // 📌 插值是“表现层的责任”
-    update() {
+    update(dt: number) {
         for (const e of this.world.getEntities()) {
             const view = this.views.get(e);
             if (!view) continue;
@@ -49,21 +49,20 @@ export class GameEntryViewSyncSys extends SystemECS {
 
                 this.world.dirty.pos[e] = 0;
             }
-            
+
             if (this.world.dirty.rot[e]) {
                 const node = view.node;
                 node.setRotationFromEuler(0, 0, this.world.rot.rotation[e] * 57.2958);
-                
+
                 this.world.dirty.rot[e] = 0;
             }
 
             if (this.world.dirty.scale[e]) {
                 const node = view.node;
                 node.setScale(this.world.scale.scaleX[e], this.world.scale.scaleY[e]);
-                
+
                 this.world.dirty.scale[e] = 0;
             }
-
         }
     }
 
